@@ -94,6 +94,5 @@ def _get_output(output, input, shape=None, complex_output=False):
         raise RuntimeError("output shape not correct")
     elif complex_output and output.dtype.kind != 'c':
         raise RuntimeError("output must have complex dtype")
-    # Check that input and output don't have the same pointer
-    assert output.ctypes.data != input.ctypes.data
+    assert not np.shares_memory(input, output)
     return output

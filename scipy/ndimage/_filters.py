@@ -166,6 +166,7 @@ def convolve1d(input, weights, axis=-1, output=None, mode="reflect",
     >>> convolve1d([2, 8, 0, 4, 1, 9, 9, 0], weights=[1, 3])
     array([14, 24,  4, 13, 12, 36, 27,  0])
     """
+    assert not numpy.shares_memory(input, output)
     weights = weights[::-1]
     origin = -origin
     if not len(weights) & 1:
